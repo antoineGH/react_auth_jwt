@@ -1,10 +1,40 @@
 import React from 'react'
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Table from 'react-bootstrap/Table'
+import Col from 'react-bootstrap/Col'
+
 export default function Users({ users }) {
-	console.log(users)
 	return (
-		<div>
-			<p>{users.length}</p>
-		</div>
+		<Container>
+			<Row>
+				<Col className='justify-content-center mt-3'>
+					<h3 className='ml-3'>Consult</h3>
+					<Table bordered hover size='sm' className='text-center'>
+						<thead>
+							<tr>
+								<th>Username</th>
+								<th>Email</th>
+								<th>First_name</th>
+								<th>Last_name</th>
+							</tr>
+						</thead>
+						<tbody>
+							{users.map((user) => {
+								return (
+									<tr key={user.username}>
+										<td>{user.username}</td>
+										<td>{user.email}</td>
+										<td>{user.first_name}</td>
+										<td>{user.last_name}</td>
+									</tr>
+								)
+							})}
+						</tbody>
+					</Table>
+				</Col>
+			</Row>
+		</Container>
 	)
 }
