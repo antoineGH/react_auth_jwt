@@ -18,15 +18,21 @@ export default function Login() {
 			},
 			body: JSON.stringify(user),
 		})
-		let responseJson = {}
+		let responseJson = undefined
+		let errorJson = undefined
 		if (response.ok) {
 			responseJson = await response.json()
 		} else {
-			responseJson = {}
+			if (response.status === 400) {
+				errorJson = await response.json()
+			}
+			if (response.status === 401) {
+				errorJson = await response.json()
+			}
 		}
 
 		return new Promise((resolve, reject) => {
-			responseJson ? resolve(responseJson) : reject()
+			responseJson ? resolve(responseJson) : reject(errorJson.message)
 		})
 	}
 
@@ -53,16 +59,16 @@ export default function Login() {
 									<Form.Label>Username</Form.Label>
 									<Form.Control value={username} onChange={(e) => setUsername(e.target.value)} type='text' placeholder='Enter username' />
 								</Form.Group>
-
+							</Col>
+							<Col md={6}>
 								<Form.Group controlId='formBasicPassword'>
 									<Form.Label>Password</Form.Label>
 									<Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />
 								</Form.Group>
-
-								<Button onClick={handleClick} variant='primary'>
-									Submit
-								</Button>
 							</Col>
+							<Button onClick={handleClick} variant='primary' className='ml-3'>
+								Login
+							</Button>
 						</Row>
 					</Form>
 				</Col>
