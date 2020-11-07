@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { login, useAuth, logout } from '../auth'
 
 export default function Login() {
 	const [username, setUsername] = useState('')
@@ -39,13 +40,16 @@ export default function Login() {
 	async function handleClick(e) {
 		requestLogin()
 			.then((response) => {
-				console.log(response)
+				if (response.access_token) {
+					login(response)
+				}
 			})
 			.catch((error) => {
 				console.log(error)
 			})
 	}
 
+	const [logged] = useAuth()
 	return (
 		<>
 			<Container>
@@ -66,12 +70,19 @@ export default function Login() {
 									<Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />
 								</Form.Group>
 							</Col>
-							<Button onClick={handleClick} variant='primary' className='ml-3'>
-								Login
-							</Button>
+							{!logged ? (
+								<Button onClick={handleClick} variant='primary' className='ml-3'>
+									Login
+								</Button>
+							) : (
+								<Button variant='primary' onClick={() => logout()} className='ml-3'>
+									Logout{' '}
+								</Button>
+							)}
 						</Row>
 					</Form>
 				</Col>
+				<Col>{!logged ? <p>not logged</p> : <p>logged!</p>}</Col>
 			</Container>
 		</>
 	)

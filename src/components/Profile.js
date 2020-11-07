@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { authFetch } from '../auth'
 
 export default function Profile() {
 	const [email, setEmail] = useState('')
@@ -22,13 +23,21 @@ export default function Profile() {
 	const [country, setCountry] = useState('')
 	const [profilePicture, setProfilePicture] = useState('')
 
+	// async function fetchUserInfo() {
+	// 	const response = await fetch('/api/user', {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			Authorization:
+	// 				'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ3ODExMzQsIm5iZiI6MTYwNDc4MTEzNCwianRpIjoiZjdhNDNlNmMtNWE4Ni00YWEzLWI2NmMtZTJkMTYyNTA4ZGMyIiwiZXhwIjoxNjA1Mzg1OTM0LCJpZGVudGl0eSI6ImFudG9pbmUucmF0YXQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.5kVDQqJWBFWxq4DOTzSEAJ28K-oAk4uGX-1HABiXvfA',
+	// 		},
+	// 	})
+
 	async function fetchUserInfo() {
-		const response = await fetch('/api/user', {
+		const response = await authFetch('/api/user', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization:
-					'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ3NjcxNDAsIm5iZiI6MTYwNDc2NzE0MCwianRpIjoiYTlkMmY2OWUtNjdhMi00OTc5LTkxMjctMGRhNGQxNzI2ZjY1IiwiZXhwIjoxNjA0NzY4MDQwLCJpZGVudGl0eSI6InJpY2suc2FuY2hleiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Z17bdX-3bY5kJ0G4w4kTVqXKHeCWYnHrD3lNfeStGE8',
 			},
 		})
 
@@ -88,12 +97,21 @@ export default function Profile() {
 			profilePicture,
 		}
 		user.key = username
-		const response = await fetch('/api/user', {
+
+		// const response = await fetch('/api/user', {
+		// 	method: 'PUT',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		Authorization:
+		// 			'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ3ODExMzQsIm5iZiI6MTYwNDc4MTEzNCwianRpIjoiZjdhNDNlNmMtNWE4Ni00YWEzLWI2NmMtZTJkMTYyNTA4ZGMyIiwiZXhwIjoxNjA1Mzg1OTM0LCJpZGVudGl0eSI6ImFudG9pbmUucmF0YXQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.5kVDQqJWBFWxq4DOTzSEAJ28K-oAk4uGX-1HABiXvfA',
+		// 	},
+		// 	body: JSON.stringify(user),
+		// })
+
+		const response = await authFetch('/api/user', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization:
-					'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ3NjcxNDAsIm5iZiI6MTYwNDc2NzE0MCwianRpIjoiYTlkMmY2OWUtNjdhMi00OTc5LTkxMjctMGRhNGQxNzI2ZjY1IiwiZXhwIjoxNjA0NzY4MDQwLCJpZGVudGl0eSI6InJpY2suc2FuY2hleiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Z17bdX-3bY5kJ0G4w4kTVqXKHeCWYnHrD3lNfeStGE8',
 			},
 			body: JSON.stringify(user),
 		})
