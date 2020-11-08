@@ -1,81 +1,64 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import Profile from './components/Profile'
 import Users from './components/Users'
 import UserForm from './components/UserForm'
 import Login from './components/Login'
-import { authFetch } from './auth'
-
-//  --- INFO: FUNCTIONS ---
-
-async function fetchUserInfo() {
-	const response = await authFetch('/api/users', {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	})
-
-	let responseJson = undefined
-	let errorJson = undefined
-
-	if (response.ok) {
-		responseJson = await response.json()
-	} else {
-		if (response.status === 400) {
-			errorJson = await response.json()
-		}
-		if (response.status === 401) {
-			errorJson = await response.json()
-		}
-		if (response.status === 403) {
-			errorJson = await response.json()
-		}
-	}
-	return new Promise((resolve, reject) => {
-		responseJson ? resolve(responseJson) : reject(errorJson)
-	})
-}
-
-function allStorage() {
-	var values = [],
-		keys = Object.keys(localStorage),
-		i = keys.length
-	while (i--) {
-		values.push(localStorage.getItem(keys[i]))
-	}
-	return values
-}
+import Navigation from './components/Navigation'
+import { useAuth } from './auth'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 //  --- INFO: APP ---
-
 function App() {
-	const [users, setUsers] = useState([])
-
-	useEffect(() => {
-		fetchUserInfo()
-			.then((response) => {
-				setUsers(response.users)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
-	}, [])
-
-	// Check all localStorage
-	useEffect(() => {
-		console.log('Display Local Storage')
-		const localStorage = allStorage()
-		console.log(localStorage)
-	}, [])
+	const [logged] = useAuth()
+	const username = localStorage.username
 
 	return (
 		<div className='App'>
-			<Users users={users} />
-			<Profile />
-			<UserForm />
-			<Login />
+			{!logged && <UnauthenticatedApp />}
+			{logged && username !== 'antoine.ratat' && <AuthenticatedApp />}
+			{logged && username === 'antoine.ratat' && <AuthenticatedAdminApp />}
 		</div>
+	)
+}
+
+//  --- INFO: FUNCTIONS ---
+
+function AuthenticatedAdminApp() {
+	return (
+		<>
+			<Router>
+				<Navigation />
+				<Route path='/' exact component={Users} />
+				<Route path='/Users' exact component={Users} />
+				<Route path='/Profile' exact component={Profile} />
+			</Router>
+		</>
+	)
+}
+
+function AuthenticatedApp() {
+	return (
+		<>
+			<Router>
+				<Navigation />
+				<Route path='/' exact component={Profile} />
+				<Route path='/Profile' exact component={Profile} />
+			</Router>
+		</>
+	)
+}
+
+function UnauthenticatedApp() {
+	return (
+		<>
+			<Router>
+				<Navigation />
+				<Route path='/' exact component={Login} />
+				<Route path='/Login' exact component={Login} />
+				<Route path='/Register' exact component={UserForm} />
+			</Router>
+		</>
 	)
 }
 
