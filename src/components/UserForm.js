@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-export default function UserForm({ onNewUser }) {
+export default function UserForm({}) {
 	const [email, setEmail] = useState('')
 	const [first_name, setFirstName] = useState('')
 	const [last_name, setLastName] = useState('')
@@ -13,28 +13,43 @@ export default function UserForm({ onNewUser }) {
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
 
-	async function handleClick(e) {
-		e.preventDefault()
+	async function createUser() {
 		const user = { username, email, password, first_name, last_name }
 		user.key = username
-		const userJson = JSON.stringify(user)
+
 		const response = await fetch('/api/users', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: userJson,
+			body: JSON.stringify(user),
 		})
-
+		let responseJson = undefined
+		let errorJson = undefined
 		if (response.ok) {
-			onNewUser(user)
-			setEmail('')
-			setFirstName('')
-			setLastName('')
-			setUsername('')
-			setPassword('')
-			setConfirmPassword('')
+			responseJson = await response.json()
+		} else {
+			if (response.status === 400) {
+				errorJson = await response.json()
+			}
+			if (response.status === 401) {
+				errorJson = await response.json()
+			}
 		}
+		return new Promise((resolve, reject) => {
+			responseJson ? resolve(responseJson) : reject(errorJson)
+		})
+	}
+
+	function handleClick(e) {
+		e.preventDefault()
+		createUser()
+			.then((response) => {
+				console.log(response)
+			})
+			.catch((error) => {
+				console.log(error.message)
+			})
 	}
 
 	return (

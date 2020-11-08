@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Table from 'react-bootstrap/Table'
@@ -10,7 +9,7 @@ export default function Users({ users }) {
 		<Container>
 			<Row>
 				<Col className='justify-content-center mt-3'>
-					<h3 className='ml-3'>Consult</h3>
+					<h3 className='ml-3'>Consult (Admin)</h3>
 					<Table bordered hover size='sm' className='text-center'>
 						<thead>
 							<tr>
@@ -21,16 +20,17 @@ export default function Users({ users }) {
 							</tr>
 						</thead>
 						<tbody>
-							{users.map((user) => {
-								return (
-									<tr key={user.username}>
-										<td>{user.username}</td>
-										<td>{user.email}</td>
-										<td>{user.first_name}</td>
-										<td>{user.last_name}</td>
-									</tr>
-								)
-							})}
+							{users &&
+								users.map((user) => {
+									return (
+										<tr key={user.username}>
+											<td>{user.username}</td>
+											<td>{user.email}</td>
+											<td>{user.first_name}</td>
+											<td>{user.last_name}</td>
+										</tr>
+									)
+								})}
 						</tbody>
 					</Table>
 				</Col>

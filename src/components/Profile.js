@@ -23,16 +23,6 @@ export default function Profile() {
 	const [country, setCountry] = useState('')
 	const [profilePicture, setProfilePicture] = useState('')
 
-	// async function fetchUserInfo() {
-	// 	const response = await fetch('/api/user', {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Authorization:
-	// 				'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ3ODExMzQsIm5iZiI6MTYwNDc4MTEzNCwianRpIjoiZjdhNDNlNmMtNWE4Ni00YWEzLWI2NmMtZTJkMTYyNTA4ZGMyIiwiZXhwIjoxNjA1Mzg1OTM0LCJpZGVudGl0eSI6ImFudG9pbmUucmF0YXQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.5kVDQqJWBFWxq4DOTzSEAJ28K-oAk4uGX-1HABiXvfA',
-	// 		},
-	// 	})
-
 	async function fetchUserInfo() {
 		const response = await authFetch('/api/user', {
 			method: 'GET',
@@ -98,16 +88,6 @@ export default function Profile() {
 		}
 		user.key = username
 
-		// const response = await fetch('/api/user', {
-		// 	method: 'PUT',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 		Authorization:
-		// 			'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ3ODExMzQsIm5iZiI6MTYwNDc4MTEzNCwianRpIjoiZjdhNDNlNmMtNWE4Ni00YWEzLWI2NmMtZTJkMTYyNTA4ZGMyIiwiZXhwIjoxNjA1Mzg1OTM0LCJpZGVudGl0eSI6ImFudG9pbmUucmF0YXQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.5kVDQqJWBFWxq4DOTzSEAJ28K-oAk4uGX-1HABiXvfA',
-		// 	},
-		// 	body: JSON.stringify(user),
-		// })
-
 		const response = await authFetch('/api/user', {
 			method: 'PUT',
 			headers: {
@@ -137,7 +117,7 @@ export default function Profile() {
 		e.preventDefault()
 		requestUpdate()
 			.then((response) => {
-				console.log(response)
+				console.log(response.message)
 			})
 			.catch((error) => {
 				console.log(error)

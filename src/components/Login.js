@@ -37,16 +37,23 @@ export default function Login() {
 		})
 	}
 
-	async function handleClick(e) {
+	function handleClick(e) {
 		requestLogin()
 			.then((response) => {
 				if (response.access_token) {
 					login(response)
+					// Set localStorage
+					localStorage.setItem('username', response.username)
 				}
 			})
 			.catch((error) => {
 				console.log(error)
 			})
+	}
+
+	function disconnect() {
+		logout()
+		localStorage.removeItem('username')
 	}
 
 	const [logged] = useAuth()
@@ -75,7 +82,7 @@ export default function Login() {
 									Login
 								</Button>
 							) : (
-								<Button variant='primary' onClick={() => logout()} className='ml-3'>
+								<Button variant='primary' onClick={disconnect} className='ml-3'>
 									Logout{' '}
 								</Button>
 							)}
