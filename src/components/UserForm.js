@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-export default function UserForm({}) {
+export default function UserForm() {
 	const [email, setEmail] = useState('')
 	const [first_name, setFirstName] = useState('')
 	const [last_name, setLastName] = useState('')
