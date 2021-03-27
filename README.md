@@ -9,11 +9,6 @@
 
 ## 1. Project description<a name="description"></a>
 
-<style>
-.diclaimer{color:red !important; font-size: 1rem}
-.diclaimer_title{color:red !important; font-size: 1.2rem; font-weight: bold;}
-</style>
-
 > Disclaimer This project is a way to understand authorization. I DON'T RECOMMEND TO USE THIS IN PRODUCTION, because it may cause security issues as storing auth tokens in the local storage is not safe. Any JavaScript code on the page has access to the local storage what makes your app vulnerable to XSS attacks
 
 React Auth JWT is the implementatin oh the library react-token-auth that handle the auth process from the front end perspective. It includes forms to emit POST requests to your backend API (registration and login functionalities)
