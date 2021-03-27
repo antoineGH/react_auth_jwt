@@ -11,7 +11,7 @@
 
 > Disclaimer This project is a way to understand authorization. I DON'T RECOMMEND TO USE THIS IN PRODUCTION, because it may cause security issues as storing auth tokens in the local storage is not safe. Any JavaScript code on the page has access to the local storage what makes your app vulnerable to XSS attacks
 
-React Auth JWT is the implementatin oh the library react-token-auth that handle the auth process from the front end perspective. It includes forms to emit POST requests to your backend API (registration and login functionalities)
+React Auth JWT is the implementatin of the library react-token-auth that handle the auth process from the front end perspective. It includes forms to emit POST requests to your backend API (registration and login functionalities)
 
 ## 2. Installation instructions<a name="installation"></a>
 
