@@ -9,11 +9,10 @@
 
 ## 1. Project description<a name="description"></a>
 
-### Disclaimer
-
--   ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `#f03c15`
-
-This project is a way to understand authorization. I DON'T RECOMMEND TO USE THIS IN PRODUCTION, because it may cause security issues as storing auth tokens in the local storage is not safe. Any JavaScript code on the page has access to the local storage what makes your app vulnerable to XSS attacks.
+```diff
+- Disclaimer -
+- This project is a way to understand authorization. I DON'T RECOMMEND TO USE THIS IN PRODUCTION, because it may cause security issues as storing auth tokens in the local storage is not safe. Any JavaScript code on the page has access to the local storage what makes your app vulnerable to XSS attacks -
+```
 
 ### Introduction
 
