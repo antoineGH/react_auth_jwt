@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { login, useAuth } from '../auth'
+import { login } from '../auth'
 
 export default function Login() {
 	const [username, setUsername] = useState('')
@@ -51,7 +51,6 @@ export default function Login() {
 			})
 	}
 
-	const [logged] = useAuth()
 	return (
 		<>
 			<Container>
