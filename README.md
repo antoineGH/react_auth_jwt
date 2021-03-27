@@ -9,9 +9,15 @@
 
 ## 1. Project description<a name="description"></a>
 
-React Pagination is an implementation of a ReactJS dumb component to render a pagination.
+### Disclaimer
 
-Data are provided from the following JSON: [newsFeedJson.js](src\utils\newsFeedJson.js)
+-   ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `#f03c15`
+
+This project is a way to understand authorization. I DON'T RECOMMEND TO USE THIS IN PRODUCTION, because it may cause security issues as storing auth tokens in the local storage is not safe. Any JavaScript code on the page has access to the local storage what makes your app vulnerable to XSS attacks.
+
+### Introduction
+
+React Auth JWT is the implementatin oh the library react-token-auth that handle the auth process from the front end perspective. It includes forms to emit POST requests to your backend API (registration and login functionalities)
 
 ## 2. Installation instructions<a name="installation"></a>
 
@@ -24,13 +30,13 @@ Versions:
 Download code from Github:
 
 ```shell
-git clone https://github.com/antoineratat/react_pagination.git
+git clone https://github.com/antoineratat/react_auth_jwt.git
 ```
 
 Navigate to project directory.
 
 ```shell
-cd react_pagination
+cd react_auth_jwt
 ```
 
 Install node modules.
@@ -51,10 +57,14 @@ npm start
     -   App.js
     -   App.css
     -   components
-        -   NewsFeed.js
-    -   utils
-        -   NewsFeedJson.js
+        -   Login.js
+        -   Navigation.js
+        -   Profile.js
+        -   UserForm.js
+        -   Users.js
+    -   auth
+        -   index.js
 
 ## 5. Screenshots<a name="screenshots"></a>
 
-![Pagination Screenshot](https://github.com/antoineratat/react_pagination/blob/main/screenshots/1.PNG?raw=true)
+![Auth Screenshot](https://github.com/antoineratat/react_auth_jwt/blob/main/screenshots/1.PNG?raw=true)
