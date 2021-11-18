@@ -61,4 +61,4 @@ npm start
 
 ## 5. Screenshots<a name="screenshots"></a>
 
-![Auth Screenshot](https://templars.guru/app/github/react_auth_jwt/1.PNG)
+![Auth Screenshot](https://github.com/antoineratat/github_docs/blob/main/react_auth_jwt/1.PNG?raw=true)
